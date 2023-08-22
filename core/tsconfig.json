@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "emitDeclarationOnly": true,  // Only output d.ts files
+    "declaration": true,          // Generate declaration files
+    "outDir": "dist", // Specify the single declaration file
+    // Other compiler options...
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "example"
+  ]
+}

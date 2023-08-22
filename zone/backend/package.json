@@ -1,0 +1,24 @@
+{
+  "name": "collab-zone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/app.ts",
+    "start:prod": "npm run build && node ./dist/src/app.js",
+    "build": "tsc -p . --outDir dist",
+    "dev": "npx nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@collabjs/core": "file:../../core",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "nodemon": "^3.0.1",
+    "socket.io": "^4.7.2",
+    "ts-node": "^10.9.1",
+    "tsc": "^2.0.4"
+  }
+}

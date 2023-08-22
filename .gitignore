@@ -1,0 +1,8 @@
+tests/
+node_modules/
+y-socket.io/
+
+**/pb
+**/dist/
+**/.DS_Store
+.DS_Store

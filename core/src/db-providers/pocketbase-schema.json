@@ -1,0 +1,47 @@
+{
+    "id": "qtnxopgmwrasdzd",
+    "name": "rooms",
+    "type": "base",
+    "system": false,
+    "schema": [
+        {
+            "id": "ldlhtu0b",
+            "name": "name",
+            "type": "text",
+            "system": false,
+            "required": false,
+            "options": {
+                "min": null,
+                "max": null,
+                "pattern": ""
+            }
+        },
+        {
+            "id": "yeapsnmw",
+            "name": "storage",
+            "type": "editor",
+            "system": false,
+            "required": false,
+            "options": {}
+        },
+        {
+            "id": "fwxhlhdb",
+            "name": "active",
+            "type": "bool",
+            "system": false,
+            "required": false,
+            "options": {}
+        }
+    ],
+    "indexes": [
+        "CREATE INDEX `idx_HN7kWNF` ON `rooms` (`created`)",
+        "CREATE INDEX `idx_p85kat5` ON `rooms` (`name`)",
+        "CREATE INDEX `idx_r3g5NOy` ON `rooms` (`active`)"
+    ],
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {}
+}

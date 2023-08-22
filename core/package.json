@@ -1,0 +1,37 @@
+{
+  "name": "@collabjs/core",
+  "version": "0.0.1",
+  "description": "a realtime collaboration tool",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts", 
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npx nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "@collabjs/core": "./dist/index.js"
+  },
+  "author": "Amirreza Salimi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "pocketbase": "^0.16.0",
+    "socket.io": "^4.7.2",
+    "y-leveldb": "^0.1.2",
+    "y-protocols": "^1.0.5",
+    "yjs": "^13.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.5.0",
+    "esbuild": "^0.19.2",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
