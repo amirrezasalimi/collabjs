@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "a realtime collaboration tool",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts", 
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -16,10 +16,13 @@
     "@collabjs/core": "./dist/index.js"
   },
   "author": "Amirreza Salimi",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amirrezasalimi/collabjs",
+    "directory": "packages/core"
+  },
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "http": "^0.0.1-security",
     "pocketbase": "^0.16.0",
     "socket.io": "^4.7.2",
     "y-leveldb": "^0.1.2",

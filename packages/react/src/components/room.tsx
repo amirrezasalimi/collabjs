@@ -77,7 +77,6 @@ const Room = ({ children }: IRoom) => {
             const awarenessChange = () => {
                 if (!_provider.awareness) return;
                 const clientsMap = _provider.awareness.getStates();
-                console.log("clientsMap", clientsMap);
                 
                 const clients = Array.from(clientsMap.keys()).map(key => {
                     return {
