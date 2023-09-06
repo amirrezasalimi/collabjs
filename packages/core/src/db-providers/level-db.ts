@@ -1,5 +1,5 @@
 import { Document } from '../y/document'
-import { DbProvider } from '../types/db-provider'
+import { DbProvider } from './db-provider'
 import { LeveldbPersistence } from 'y-leveldb';
 import * as Y from 'yjs';
 class LevelDbProvider extends DbProvider {

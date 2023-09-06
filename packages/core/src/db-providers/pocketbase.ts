@@ -1,5 +1,5 @@
 import { Document } from '../y/document'
-import { DbProvider } from '../types/db-provider'
+import { DbProvider } from './db-provider'
 import * as Y from 'yjs';
 
 
@@ -82,7 +82,6 @@ class PocketbaseProvider extends DbProvider {
             if (data) {
                 console.log("update room");
                 const oldDoc = this.base64ToDoc(data.storage);
-                console.log("isChanged", this.isChanged(oldDoc, ydoc));
 
                 if (this.isChanged(oldDoc, ydoc)) {
                     await this.pb.collection("rooms").update(data.id, {

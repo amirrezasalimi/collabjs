@@ -1,7 +1,7 @@
 import express from 'express';
 import { Server } from 'socket.io';
 import http from "http"
-import { CollabCore, PocketbaseProvider } from '../../dist';
+import { CollabCore, LevelDBProvider, PocketbaseProvider } from '../../dist';
 
 const app = express();
 const server = http.createServer(app);
@@ -14,14 +14,14 @@ app.get('/', (req, res) => {
 const pbDb = new PocketbaseProvider({
   url: "http://127.0.0.1:8090",
   admin: {
-    email: "",
-    password: ""
+    email: "amirrezasalimi0@gmail.com",
+    password: "6EYdE9WmxjJN58B"
   }
 });
 
 const io = new Server(server);
 const collab = new CollabCore(io, {
-  db: pbDb,
+  db: new LevelDBProvider(),
   authenticate: (handshake) => {
     return new Promise(resolve => {
       resolve("edit")

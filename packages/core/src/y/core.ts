@@ -3,7 +3,7 @@ import { Namespace, Server, Socket } from 'socket.io'
 import * as AwarenessProtocol from 'y-protocols/awareness'
 import { Document } from './document'
 import { Observable } from 'lib0/observable'
-import { DbProvider } from '../types/db-provider'
+import { DbProvider } from '../db-providers/db-provider'
 import { decoding } from "lib0"
 
 type AuthenticateCustom = {
@@ -143,9 +143,11 @@ export class CollabCore extends Observable<string> {
             const namespace = socket.nsp.name.replace(/\/yjs\|/, '')
             const roomName = socket.handshake.auth.room;
 
+
             if (this.roomSockets[roomName] == null) this.roomSockets[roomName] = {}
             this.roomSockets[roomName][socket.id] = socket;
-            const doc = await this.initDocument(namespace, socket.nsp, this.configuration?.gcEnabled)
+            const storageDefaults = socket.handshake.auth?.["storage"];
+            const doc = await this.initDocument(namespace, socket.nsp, this.configuration?.gcEnabled, storageDefaults)
 
             // emit permission
             socket.emit("permission", {
@@ -154,9 +156,6 @@ export class CollabCore extends Observable<string> {
 
             this.configuration?.events?.onClientJoined(namespace, doc, socket);
 
-            // broad cast awareness update to all broadcastToRoom
-        
-             
 
             this.initSyncListeners(socket, doc)
             this.initAwarenessListeners(socket, doc)
@@ -189,7 +188,7 @@ export class CollabCore extends Observable<string> {
      * @param {boolean} gc Enable/Disable garbage collection (default: gc=true)
      * @returns {Promise<Document>} The document
      */
-    private async initDocument(name: string, namespace: Namespace, gc: boolean = true): Promise<Document> {
+    private async initDocument(name: string, namespace: Namespace, gc: boolean = true, storageDefaults?: object): Promise<Document> {
         const doc = this._documents.get(name) ?? (new Document(name, namespace, {
             onUpdate: (doc, update) => this.emit('document-update', [doc, update]),
             onChangeAwareness: (doc, update) => this.emit('awareness-update', [doc, update]),
@@ -198,14 +197,22 @@ export class CollabCore extends Observable<string> {
                 this.emit('document-destroy', [doc])
             }
         }))
-        doc.gc = gc
+
+        doc.gc = gc;
         if (!this._documents.has(name)) {
             if (this.configuration.db != null) {
                 await this.configuration.db.bindState(name, doc)
+                // apply defaults
+            
             }
             this._documents.set(name, doc)
             this.emit('document-loaded', [doc])
             this.configuration?.events?.onRoomCreated?.(name, doc);
+        }
+        console.log("defaults:",storageDefaults);
+        
+        if (storageDefaults) {
+            this.configuration.db.applyStorageDefaults(doc, storageDefaults);
         }
         return doc
     }

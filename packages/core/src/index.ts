@@ -7,4 +7,4 @@ export {
     PocketbaseProvider,
     LevelDBProvider,
     yDocToJson,
-}   
+}
