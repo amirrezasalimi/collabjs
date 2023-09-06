@@ -1,6 +1,6 @@
 {
   "name": "@collabjs/core",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "a realtime collaboration tool",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
