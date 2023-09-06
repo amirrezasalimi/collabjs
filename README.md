@@ -1,6 +1,6 @@
-# ColabJS - Realtime Collaboration Made Easy
+# CollabJS - Realtime Collaboration Made Easy
 
-ColabJS is a comprehensive backend and frontend package designed to simplify the development of real-time collaboration applications. Powered by the Yjs (CRDT - Conflict-free replicated data type) framework, ColabJS is fully written in TypeScript and offers a range of tools to streamline your collaborative app development process.
+CollabJS is a comprehensive backend and frontend package designed to simplify the development of real-time collaboration applications. Powered by the Yjs (CRDT - Conflict-free replicated data type) framework, CollabJS is fully written in TypeScript and offers a range of tools to streamline your collaborative app development process.
 
 ## Demo
 
@@ -8,27 +8,27 @@ Check out our demo app [here](xxx).
 
 ## Installation
 
-To get started with ColabJS in your project, you can install the React library like so:
+To get started with CollabJS in your project, you can install the React library like so:
 
 ```bash
-npm install @colabjs/react
+npm install @collabjs/react
 ```
 
 For the backend with LevelDB support:
 
 ```bash
-npm install @colabjs/core
+npm install @collabjs/core
 ```
 
 ## Usage
 
 ### React Components and Hooks
 
-To use ColabJS in your React application, wrap your components with the `RoomProvider` and configure it with the necessary options:
+To use CollabJS in your React application, wrap your components with the `RoomProvider` and configure it with the necessary options:
 
 ```jsx
 import React from 'react';
-import { RoomProvider } from '@colabjs/react';
+import { RoomProvider } from '@collabjs/react';
 
 const App = () => {
   return (
@@ -53,7 +53,7 @@ export default App;
 
 #### Hooks and APIs
 
-ColabJS provides various hooks and APIs to interact with your real-time data:
+CollabJS provides various hooks and APIs to interact with your real-time data:
 
 - `useRoom`: Access room information, Yjs doc instance, and more.
 - `useStorage`: Store real-time data and access it, triggering component re-renders on updates.
@@ -67,7 +67,7 @@ Example usage:
 
 ```jsx
 import React from 'react';
-import { useStorage, useClients, useSelf, useIsConnected, useIsSynced } from '@colabjs/react';
+import { useStorage, useClients, useSelf, useIsConnected, useIsSynced } from '@collabjs/react';
 
 const MyComponent = () => {
   const [count, update] = useStorage(data => data);
@@ -88,10 +88,10 @@ const MyComponent = () => {
 
 ### Backend with LevelDB
 
-To use the core package of ColabJS with LevelDB support in your Node.js project, install it like this:
+To use the core package of CollabJS with LevelDB support in your Node.js project, install it like this:
 
 ```bash
-npm install @colabjs/core
+npm install @collabjs/core
 ```
 
 #### Example
@@ -100,7 +100,7 @@ npm install @colabjs/core
 import express from 'express';
 import { Server } from 'socket.io';
 import http from "http"
-import { CollabCore, LevelDbProvider, PocketbaseProvider } from '@colabjs/core';
+import { CollabCore, LevelDbProvider, PocketbaseProvider } from '@collabjs/core';
 
 const app = express();
 const server = http.createServer(app);
@@ -150,14 +150,14 @@ server.listen(3000, () => {
 
 ## Supported Backends
 
-ColabJS currently supports two backend data providers:
+CollabJS currently supports two backend data providers:
 
 - LevelDB
 - Pocketbase
 
 ## Acknowledgments
 
-ColabJS wouldn't be possible without the following repositories:
+CollabJS wouldn't be possible without the following repositories:
 
 - [Yjs](https://github.com/yjs/yjs)
 - [Y-Socket.io](https://github.com/ivan-topp/y-socket.io)
@@ -167,6 +167,6 @@ ColabJS wouldn't be possible without the following repositories:
 
 ## License
 
-ColabJS is released under the MIT License. Feel free to use it in your projects and customize it to your needs.
+CollabJS is released under the MIT License. Feel free to use it in your projects and customize it to your needs.
 
-Happy coding with ColabJS! 🚀
+Happy coding with CollabJS! 🚀
