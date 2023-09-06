@@ -6,3 +6,4 @@ db/
 **/dist/
 **/.DS_Store
 .DS_Store
+.vscode
