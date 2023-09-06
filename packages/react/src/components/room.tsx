@@ -7,6 +7,7 @@ import { SocketIOProvider } from "../y/provider"
 import { makeConnectionStore } from "../store/connection"
 import { makeClientsStore } from "../store/clients"
 import { Client } from "../types/client"
+import { bind } from "immer-yjs"
 
 interface RoomProps {
     id: string,
@@ -14,11 +15,13 @@ interface RoomProps {
 }
 interface IRoomProvider extends RoomProps {
     children: React.ReactNode
+    storage?: object
 }
 interface IRoom {
     children: React.ReactNode
+    storage?: object
 }
-const Room = ({ children }: IRoom) => {
+const Room = ({ children, storage }: IRoom) => {
     const store = roomContext()
     const {
         id,
@@ -37,10 +40,8 @@ const Room = ({ children }: IRoom) => {
 
     const isProviderSet = useRef(false);
 
-
-
     useLayoutEffect(() => {
-        if (!provider && setStatus) {
+        if (!provider) {
             const makeSocketIoProvider = () => {
                 const _provider = new SocketIOProvider(
                     config?.url ?? 'ws://localhost:1234',
@@ -53,9 +54,10 @@ const Room = ({ children }: IRoom) => {
                         auth: {
                             ...config?.auth,
                             room: id,
+                            storage
                         },
-                    })
-
+                    });
+                    
                 _provider.socket.on('permission', ({ permission }: {
                     permission: "edit" | "view" | undefined
                 }) => {
@@ -77,7 +79,7 @@ const Room = ({ children }: IRoom) => {
             const awarenessChange = () => {
                 if (!_provider.awareness) return;
                 const clientsMap = _provider.awareness.getStates();
-                
+
                 const clients = Array.from(clientsMap.keys()).map(key => {
                     return {
                         uid: key,
@@ -95,6 +97,7 @@ const Room = ({ children }: IRoom) => {
                 _provider.awareness.on('change', awarenessChange)
             }
             setProvider(_provider);
+
             isProviderSet.current = true;
 
             return () => {
@@ -105,7 +108,7 @@ const Room = ({ children }: IRoom) => {
                     _provider.off?.("sync", syncChange);
                     _provider.off?.("status", statusChange);
                     if (typeof _provider.awareness != "undefined") {
-                        // _provider.awareness.off('change', awarenessChange)
+                        _provider.awareness.off('change', awarenessChange)
                     }
                     _provider.disconnect?.();
                     _provider.destroy?.();
@@ -130,7 +133,8 @@ const Room = ({ children }: IRoom) => {
 export const RoomProvider = ({
     children,
     id,
-    config
+    config,
+    storage
 }: IRoomProvider) => {
 
     return (
@@ -144,7 +148,7 @@ export const RoomProvider = ({
                 clientsStore: makeClientsStore(),
             }
         } >
-            <Room>
+            <Room storage={storage}>
                 {children}
             </Room>
         </RoomContext.Provider>

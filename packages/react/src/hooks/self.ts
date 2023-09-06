@@ -8,7 +8,13 @@ const useSelf = <ClientData>() => {
     const { provider } = useRoom();
     const room = roomContext();
     const self = useStore(room.clientsStore, state => state.self);
-    const data = provider?.awareness?.getLocalState() as Client;
+    const _data = provider?.awareness?.getLocalState() as Client;
+    const data = {
+        ..._data,
+        uid: provider?.awareness?.clientID ?? -1,
+        permission: self.permission,
+    } as Client & ClientData;
+
     const [forceRender, setForceRender] = useState(0);
     useEffect(() => {
         const onChange = () => {
@@ -28,17 +34,15 @@ const useSelf = <ClientData>() => {
         draft: (data: Client & ClientData) => void
     ) => {
         if (provider?.awareness) {
+            const oldData = provider?.awareness?.getLocalState() as Client;
+            const newUpdate = produce(oldData, draft);
             provider.awareness.setLocalState(
-                produce(data ?? {}, draft)
+                newUpdate
             )
         }
     }
     return {
-        data: {
-            ...data,
-            uid: provider?.awareness?.clientID ?? -1,
-            permission: self.permission,
-        } as Client & ClientData,
+        data,
         update
     }
 }
