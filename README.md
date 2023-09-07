@@ -6,7 +6,20 @@ CollabJS is a comprehensive backend and frontend package designed to simplify th
 ![alt text](demo.png)
 
 Check out our demo app [here](https://collabjs-demo.vercel.app/).
+# Features
+- leveldb, pocketbase (persistence storage)
+- server-side auth middleware (edit , view permission)
+- multi room support
+- undo manager
+- default storage schema
+- useful react hooks (room,storage,self,clients,connection,sync,...)
+- immer based storage update
+- support syncing client data with each others , (mouse position , color)
 
+# Roadmap
+- clear
+- support text type
+- add e2e tests
 ## Installation
 
 To get started with CollabJS in your project, you can install the React library like so:
@@ -63,6 +76,7 @@ CollabJS provides various hooks and APIs to interact with your real-time data:
 - `useSelf`: Get the current client's data and a function to update it.
 - `useIsConnected`: Check the connection status (boolean).
 - `useIsSynced`: Check the sync status (boolean).
+- `useUndo`: undo , redu manager.
 
 Example usage:
 
