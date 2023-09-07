@@ -3,8 +3,9 @@
 CollabJS is a comprehensive backend and frontend package designed to simplify the development of real-time collaboration applications. Powered by the Yjs (CRDT - Conflict-free replicated data type) framework, CollabJS is fully written in TypeScript and offers a range of tools to streamline your collaborative app development process.
 
 ## Demo
+![alt text](demo.png)
 
-Check out our demo app [here](xxx).
+Check out our demo app [here](https://collabjs-demo.vercel.app/).
 
 ## Installation
 
