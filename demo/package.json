@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@collabjs/react": "file:../packages/react",
+    "@collabjs/react": "^0.0.2",
     "@nextui-org/react": "^2.1.5",
     "clsx": "^2.0.0",
     "docker-names": "^1.2.1",

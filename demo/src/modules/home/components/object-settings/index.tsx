@@ -46,14 +46,15 @@ const GroupRenderer = ({
 
     return <>
         {
-            settingsGroups[name].map((component,i) => {
+            settingsGroups[name].map((component, i) => {
                 return <ComponentEl key={i} component={{
                     ...component,
-                    // @ts-ignore
                     value: data[component.name] ?? ""
-                }} onChange={(value) => {
-                    onChange(component.name, value);
-                }} />
+                }}
+                    onChange={(value) => {
+                        onChange(component.name, value);
+                    }}
+                />
             })
         }
     </>
@@ -77,7 +78,7 @@ const Settings = () => {
             <>
                 <div className="flex flex-col gap-2">
                     {
-                        objectsSettings[currentObj.type].map((group) => {
+                        objectsSettings[currentObj.type]?.map((group) => {
                             return <div className="flex flex-col gap-2" key={
                                 group
                             }>

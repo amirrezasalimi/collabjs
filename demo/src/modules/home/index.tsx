@@ -9,6 +9,8 @@ import useSelect from "../../shared/hooks/selection";
 import clsx from "clsx";
 import { getUserId } from "../../shared/utils/user";
 import { CanvasContent } from "./components/canvas-content";
+import { useLayoutEffect } from "react";
+import { generateUniqueId } from "../../shared/utils/id";
 
 
 const ObjectsList = () => {
@@ -20,9 +22,7 @@ const ObjectsList = () => {
         return selection.isObjSelected(id) && selection.getObjSelectedUsers(id).includes(String(selfId))
     }
 
-
     const objStatic = useObjectsStatic();
-
     return <>
         {
             objectsArray.map((id) => {
@@ -65,7 +65,7 @@ const Room = () => {
         </Panel>
 
         {/* top menu */}
-        <Panel className="fixed top-2 left-[calc(50%-(150px/2))] w-[150px] p-2 px-4 h-[56px] flex items-center gap-3">
+        <Panel className="fixed top-2 left-[calc(50%-(110px/2))] w-[110px] p-2 px-4 h-[56px] flex items-center gap-3">
             <div className="hover:opacity-70 transition-all"
                 draggable
                 onDragStart={
@@ -91,7 +91,7 @@ const Room = () => {
                 </svg>
             </div>
 
-            <div className="hover:opacity-70 transition-all"
+            {/*             <div className="hover:opacity-70 transition-all"
                 draggable
                 onDragStart={
                     (e) => {
@@ -103,7 +103,7 @@ const Room = () => {
                     <path d="M0 2H29" stroke="white" strokeWidth="2.95316" />
                     <path d="M13.9487 1.67053L13.9487 30.3783" stroke="white" strokeWidth="2.95316" />
                 </svg>
-            </div>
+            </div> */}
 
             {/* <div className="w-[10px] h-[80%] mx-1 bg-[#3A3A3A] rounded-full" /> */}
         </Panel>
@@ -126,9 +126,38 @@ const Room = () => {
 }
 
 const Home = () => {
-    return <RoomProvider id="main2" config={{
-        url: "ws://localhost:3000",
-    }}
+
+    const currentUrl = window.location.href;
+    const queryParams = new URLSearchParams(new URL(currentUrl).search);
+
+    const id = queryParams.get("id");
+
+    useLayoutEffect(() => {
+        if (!id) {
+            // Generate a random ID
+            const randomId = generateUniqueId();
+
+            // Set the "id" query parameter with the random ID
+            queryParams.set('id', randomId);
+
+            // Update the URL with the new query parameter
+            const newUrl = `${window.location.origin}${window.location.pathname}?${queryParams.toString()}`;
+
+            // Redirect to the updated URL
+            window.location.href = newUrl;
+        }
+    }, [])
+
+
+    if (!id) {
+        return <>...</>
+    }
+
+    return <RoomProvider
+        id={id}
+        config={{
+            url: "https://impolitedifficultsystemsanalysis.amirrezasalimi0.repl.co",
+        }}
         storage={{
             objects: {
 

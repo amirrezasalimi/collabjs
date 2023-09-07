@@ -1,5 +1,5 @@
 import { RoomProvider, useIsConnected, useStorage } from "@collabjs/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type Shape = {
     x: number;

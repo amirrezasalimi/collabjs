@@ -68,7 +68,7 @@ export const settingsGroups: Record<groupTypes, Component[]> = {
     ],
 }
 
-export const objectsSettings: Record<ObjTypes, groupTypes[]> = {
+export const objectsSettings:Partial< Record<ObjTypes, groupTypes[]>> = {
     "rectangle": [
         "general",
         "size",

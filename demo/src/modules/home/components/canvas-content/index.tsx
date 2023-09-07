@@ -74,7 +74,7 @@ export const CanvasContent = () => {
         if (e.target === dropTarget.current && !draggingObj.current) {
             selection.unselect(getUserId());
         }
-    }   
+    }
 
     const onMove = (e: MouseEvent) => {
         if (!draggingObj.current || !dropTarget.current) return;
@@ -95,15 +95,15 @@ export const CanvasContent = () => {
         }
         // move object ,  from exact position of mosue over the object , not from the top left corner
         const offsetX = e.clientX - dropTarget.current.getBoundingClientRect().left - w / 2;
-        const offsetY = e.clientY - dropTarget.current.getBoundingClientRect().top - h / 2;        
-     
+        const offsetY = e.clientY - dropTarget.current.getBoundingClientRect().top - h / 2;
+
         objectsStatic.edit({
             id: draggingObj.current,
             x: offsetX,
             y: offsetY
         });
     }
-    
+
     const mouseUp = () => {
         draggingObj.current = null;
     }
@@ -160,7 +160,7 @@ export const CanvasContent = () => {
             objectsArray.map((id) => {
                 const obj = objects[id];
                 return <ObjectRender
-                key={id}
+                    key={id}
                     mouseDown={() => {
                         draggingObj.current = String(id);
                         selection.selectObj(id, getUserId());

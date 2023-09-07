@@ -15,11 +15,7 @@ export const useObjectsStatic = () => {
         {
             [id: string]: Obj
         }
-    >(state => state.object_data, {
-        object_data: {
-
-        }
-    })
+    >(state => state.object_data)
     const edit = (obj: Partial<Obj>) => {
         if (!obj.id) return;
         set(draft => {
@@ -78,7 +74,7 @@ const useObjects = () => {
     });
 
 
-    const [objects_data, setObjectsData] = useStaticStorage<{
+    const [, setObjectsData] = useStaticStorage<{
         object_data: {
             [id: string]: Obj
         }
@@ -86,11 +82,7 @@ const useObjects = () => {
         {
             [id: string]: Obj
         }
-    >(state => state.object_data, {
-        object_data: {
-
-        }
-    })
+    >(state => state.object_data)
 
     const add = (obj: Partial<Obj>) => {
         const id = String(Date.now());
