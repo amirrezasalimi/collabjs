@@ -28,6 +28,7 @@ const Room = ({ children, storage }: IRoom) => {
         provider,
         doc,
         setProvider,
+        yImmerBinder
     } = useStore(store.roomStore);
 
 
@@ -113,6 +114,7 @@ const Room = ({ children, storage }: IRoom) => {
 
                     (_provider as SocketIOProvider)?.socket?.disconnect?.();
                     (_provider as SocketIOProvider)?.socket?.close?.();
+                    yImmerBinder?.unbind();
                 }
             }
         }
