@@ -76,7 +76,7 @@ CollabJS provides various hooks and APIs to interact with your real-time data:
 - `useSelf`: Get the current client's data and a function to update it.
 - `useIsConnected`: Check the connection status (boolean).
 - `useIsSynced`: Check the sync status (boolean).
-- `useUndo`: undo , redu manager.
+- `useUndo`: undo , redo manager.
 
 Example usage:
 
