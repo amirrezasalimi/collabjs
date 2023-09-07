@@ -1,5 +1,5 @@
-import { useContext, useEffect, useLayoutEffect, useRef } from "react"
-import { IRoomContext, RoomContext, roomContext } from "../context/room"
+import { useLayoutEffect, useRef } from "react"
+import { RoomContext, roomContext } from "../context/room"
 import { StoreReturnType, makeRoomStore } from "../store/room"
 import { RoomConfig, RoomStatus } from "../types/room"
 import { useStore } from "zustand"
@@ -7,7 +7,6 @@ import { SocketIOProvider } from "../y/provider"
 import { makeConnectionStore } from "../store/connection"
 import { makeClientsStore } from "../store/clients"
 import { Client } from "../types/client"
-import { bind } from "immer-yjs"
 
 interface RoomProps {
     id: string,
@@ -101,7 +100,6 @@ const Room = ({ children, storage }: IRoom) => {
             isProviderSet.current = true;
 
             return () => {
-                console.log("unmount", provider);
 
                 // cleanup
                 if (_provider) {
@@ -119,13 +117,6 @@ const Room = ({ children, storage }: IRoom) => {
             }
         }
     }, [setStatus]);
-
-    useEffect(() => {
-        console.log("mount Room");
-        return () => {
-            console.log("unmount Room");
-        }
-    }, [])
 
     return children;
 }
