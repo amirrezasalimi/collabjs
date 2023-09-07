@@ -52,6 +52,7 @@ export const Users = () => {
                 color: colors[Math.floor(Math.random() * colors.length)]
             };
             localStorage.setItem("info", JSON.stringify(data));
+            info = data;
 
             self.update(draft => {
                 if (info) {

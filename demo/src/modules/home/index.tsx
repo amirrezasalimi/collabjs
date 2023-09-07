@@ -126,7 +126,6 @@ const Room = () => {
 }
 
 const Home = () => {
-
     const currentUrl = window.location.href;
     const queryParams = new URLSearchParams(new URL(currentUrl).search);
 
