@@ -5,8 +5,7 @@ import * as Y from 'yjs';
 
 // @ts-ignore
 import Schema from "./pocketbase-schema.json";
-import Pocketbase, { RecordFullListQueryParams } from 'pocketbase';
-import { yDocToJson } from '../y/utils';
+import Pocketbase from 'pocketbase';
 interface PocketbaseDbConfig {
     url: string,
     admin?: {

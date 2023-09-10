@@ -203,14 +203,12 @@ export class CollabCore extends Observable<string> {
             if (this.configuration.db != null) {
                 await this.configuration.db.bindState(name, doc)
                 // apply defaults
-            
             }
             this._documents.set(name, doc)
             this.emit('document-loaded', [doc])
             this.configuration?.events?.onRoomCreated?.(name, doc);
         }
-        console.log("defaults:",storageDefaults);
-        
+
         if (storageDefaults) {
             this.configuration.db.applyStorageDefaults(doc, storageDefaults);
         }
