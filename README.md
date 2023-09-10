@@ -17,6 +17,7 @@ Check out our demo app [here](https://collabjs-demo.vercel.app/).
 - support syncing client data with each others , (mouse position , color)
 
 # Roadmap
+- broadcastMessage 
 - clear
 - support text type
 - add e2e tests
